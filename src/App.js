@@ -44,21 +44,21 @@ function App() {
 }
 
 function Message({ counter }) {
+  // Set the date to today
   const date = new Date();
-  date.setDate(date.getDate() + counter);
 
-  // Today
-  // Days from today
-  // Days ago
+  // Calculate the date based on the counter
+  date.setDate(date.getDate() + counter);
 
   return (
     <div>
       <span>
+        {/* // This message is displayed based on the counter value */}
         {counter === 0
           ? "Today is "
           : counter > 0
           ? `${counter} days from today is `
-          : `${Math.abs(counter)} days ago is `}
+          : `${Math.abs(counter)} days ago was `}
       </span>
       <span>{date.toDateString()}</span>
     </div>
