@@ -4,41 +4,42 @@ function App() {
   const [counter, setCounter] = useState(0);
   const [step, setStep] = useState(1);
 
-  // This function is called when the decrement button is clicked
-  function handleStepDecrement() {
-    if (step > 1) {
-      setStep((prevStep) => prevStep - 1);
-    }
-  }
-
-  // This function is called when the increment button is clicked
-  function handleStepIncrement() {
-    setStep((prevStep) => prevStep + 1);
-  }
-
-  // This function is called when the counter decrement button is clicked
-  function handleCounterDecrement() {
-    setCounter((prevCounter) => prevCounter - step);
-  }
-
-  // This function is called when the counter increment button is clicked
-  function handleCounterIncrement() {
-    setCounter((prevCounter) => prevCounter + step);
+  function handleReset() {
+    setCounter(0);
+    setStep(1);
   }
 
   return (
     <div>
       <div>
-        <button onClick={handleStepDecrement}>&minus;</button>
+        <input
+          type="range"
+          min="1"
+          max="10"
+          value={step}
+          onChange={(e) => setStep(Number(e.target.value))}
+        />
         <span>Step: {step}</span>
-        <button onClick={handleStepIncrement}>&#43;</button>
       </div>
       <div>
-        <button onClick={handleCounterDecrement}>&minus;</button>
-        <span>Count: {counter}</span>
-        <button onClick={handleCounterIncrement}>&#43;</button>
+        <button onClick={() => setCounter((prevCounter) => prevCounter - step)}>
+          &minus;
+        </button>
+        <input
+          type="text"
+          value={counter}
+          onChange={(e) => setCounter(Number(e.target.value))}
+        />
+        <button onClick={() => setCounter((prevCounter) => prevCounter + step)}>
+          &#43;
+        </button>
       </div>
       <Message counter={counter} />
+      {step === 1 && counter === 0 ? null : (
+        <div>
+          <button onClick={() => handleReset()}>Reset</button>
+        </div>
+      )}
     </div>
   );
 }
