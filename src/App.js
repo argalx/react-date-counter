@@ -26,7 +26,7 @@ function App() {
           &minus;
         </button>
         <input
-          type="text"
+          type="number"
           value={counter}
           onChange={(e) => setCounter(Number(e.target.value))}
         />
